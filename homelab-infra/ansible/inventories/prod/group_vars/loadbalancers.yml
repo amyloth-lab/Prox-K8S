@@ -1,0 +1,4 @@
+---
+vrrp_router_id: 51
+vrrp_auth_pass: "{{ vault_vrrp_auth_pass }}"
+haproxy_stats_port: 8404

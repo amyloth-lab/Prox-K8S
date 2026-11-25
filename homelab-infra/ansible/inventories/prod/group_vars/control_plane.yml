@@ -1,0 +1,3 @@
+---
+k8s_version: "{{ kubernetes_version | default('v1.31.2') }}"
+primary_control_plane: "{{ primary_control_plane_name | default('k8s-cp-01') }}"

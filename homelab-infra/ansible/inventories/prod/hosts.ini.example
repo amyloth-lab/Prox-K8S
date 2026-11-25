@@ -1,0 +1,17 @@
+[loadbalancers]
+k8s-lb-01 ansible_host=192.0.2.161 keepalived_state=MASTER keepalived_priority=101
+k8s-lb-02 ansible_host=192.0.2.162 keepalived_state=BACKUP keepalived_priority=100
+
+[control_plane]
+k8s-cp-01 ansible_host=192.0.2.171
+k8s-cp-02 ansible_host=192.0.2.172
+k8s-cp-03 ansible_host=192.0.2.173
+
+[workers]
+k8s-wk-01 ansible_host=192.0.2.181
+k8s-wk-02 ansible_host=192.0.2.182
+k8s-wk-03 ansible_host=192.0.2.183
+
+[k8s_cluster:children]
+control_plane
+workers

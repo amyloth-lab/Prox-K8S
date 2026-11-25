@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Terraform format') {
+            steps {
+                sh 'cd terraform/environments/prod && terraform fmt -check -recursive'
+            }
+        }
+
+        stage('Terraform validate') {
+            steps {
+                sh 'cd terraform/environments/prod && terraform init -backend=false -input=false && terraform validate'
+            }
+        }
+
+        stage('Ansible syntax') {
+            steps {
+                sh 'ansible-playbook -i ansible/inventories/prod/hosts.ini ansible/playbooks/01-base-hardening.yml --syntax-check'
+                sh 'ansible-playbook -i ansible/inventories/prod/hosts.ini ansible/playbooks/02-loadbalancers.yml --syntax-check'
+                sh 'ansible-playbook -i ansible/inventories/prod/hosts.ini ansible/playbooks/03-k8s-prereqs.yml --syntax-check'
+                sh 'ansible-playbook -i ansible/inventories/prod/hosts.ini ansible/playbooks/04-k8s-bootstrap.yml --syntax-check'
+            }
+        }
+    }
+}

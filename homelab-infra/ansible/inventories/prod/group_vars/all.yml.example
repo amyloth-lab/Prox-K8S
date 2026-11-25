@@ -1,0 +1,12 @@
+---
+lab_network_interface: "eth0"
+lab_api_vip: "192.0.2.150"
+lab_api_port: 6443
+lab_pod_cidr: "10.244.0.0/16"
+lab_service_cidr: "10.96.0.0/12"
+system_timezone: "UTC"
+kubernetes_version_minor: "v1.31"
+kubernetes_version: "v1.31.2"
+kubernetes_package_version: "1.31.2-1.1"
+storage_data_device: "/dev/sdb"
+storage_mount_path: "/var/lib/longhorn"

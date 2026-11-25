@@ -1,0 +1,92 @@
+storage_pool        = "local-lvm"
+network_bridge      = "vmbr0"
+gateway             = "192.0.2.1"
+dns_servers         = ["192.0.2.1", "1.1.1.1"]
+ci_user             = "ubuntu"
+ssh_public_key_path = "~/.ssh/id_ed25519.pub"
+
+vms = {
+  "k8s-lb-01" = {
+    vm_id        = 201
+    target_node  = "pve1"
+    template_id  = 9001
+    cores        = 1
+    memory       = 1024
+    os_disk_size = 10
+    ip_cidr      = "192.0.2.161/24"
+    tags         = ["k8s", "loadbalancer", "prod"]
+  }
+  "k8s-lb-02" = {
+    vm_id        = 202
+    target_node  = "pve2"
+    template_id  = 9002
+    cores        = 1
+    memory       = 1024
+    os_disk_size = 10
+    ip_cidr      = "192.0.2.162/24"
+    tags         = ["k8s", "loadbalancer", "prod"]
+  }
+  "k8s-cp-01" = {
+    vm_id        = 211
+    target_node  = "pve1"
+    template_id  = 9001
+    cores        = 2
+    memory       = 4096
+    os_disk_size = 30
+    ip_cidr      = "192.0.2.171/24"
+    tags         = ["k8s", "control-plane", "prod"]
+  }
+  "k8s-cp-02" = {
+    vm_id        = 212
+    target_node  = "pve2"
+    template_id  = 9002
+    cores        = 2
+    memory       = 4096
+    os_disk_size = 30
+    ip_cidr      = "192.0.2.172/24"
+    tags         = ["k8s", "control-plane", "prod"]
+  }
+  "k8s-cp-03" = {
+    vm_id        = 213
+    target_node  = "pve3"
+    template_id  = 9003
+    cores        = 2
+    memory       = 4096
+    os_disk_size = 30
+    ip_cidr      = "192.0.2.173/24"
+    tags         = ["k8s", "control-plane", "prod"]
+  }
+  "k8s-wk-01" = {
+    vm_id          = 221
+    target_node    = "pve1"
+    template_id    = 9001
+    cores          = 4
+    memory         = 8192
+    os_disk_size   = 30
+    data_disk_size = 50
+    ip_cidr        = "192.0.2.181/24"
+    tags           = ["k8s", "worker", "longhorn", "prod"]
+  }
+  "k8s-wk-02" = {
+    vm_id          = 222
+    target_node    = "pve2"
+    template_id    = 9002
+    cores          = 4
+    memory         = 8192
+    os_disk_size   = 30
+    data_disk_size = 50
+    ip_cidr        = "192.0.2.182/24"
+    tags           = ["k8s", "worker", "longhorn", "prod"]
+  }
+  "k8s-wk-03" = {
+    vm_id          = 223
+    target_node    = "pve3"
+    template_id    = 9003
+    cores          = 4
+    memory         = 8192
+    os_disk_size   = 30
+    data_disk_size = 50
+    ip_cidr        = "192.0.2.183/24"
+    tags           = ["k8s", "worker", "longhorn", "prod"]
+  }
+}

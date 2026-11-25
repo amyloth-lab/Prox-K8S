@@ -1,0 +1,61 @@
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: homelab-gateway # Replace with your actual Gateway name
+      namespace: kube-system # Replace with your Gateway's namespace
+      sectionName: https
+  hostnames:
+    - core.example.com
+
+kubernetes:
+  enabled: true
+
+config:
+  kubernetes:
+    mode: cluster
+    gateway: true # Enables HTTPRoute auto-discovery
+    ingress: false
+
+  settings:
+    title: Myloth Homelab
+    theme: dark
+    color: slate
+    headerStyle: clean
+
+  widgets:
+    - kubernetes:
+        cluster:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          label: "cluster"
+        nodes:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+
+  services:
+    - Infrastructure:
+        - ArgoCD:
+            icon: argocd.png
+            href: https://argocd.example.com
+            description: GitOps Continuous Delivery
+        - Longhorn:
+            icon: longhorn.png
+            href: https://longhorn.example.com
+            description: Distributed Block Storage
+    - Observability:
+        - Grafana:
+            icon: grafana.png
+            href: https://grafana.example.com
+            description: Dashboards & Logs
+        - Prometheus:
+            icon: prometheus.png
+            href: https://prometheus.example.com
+            description: Metrics & Targets
+        - Alertmanager:
+            icon: prometheus.png
+            href: https://alertmanager.example.com
+            description: Alert Routing

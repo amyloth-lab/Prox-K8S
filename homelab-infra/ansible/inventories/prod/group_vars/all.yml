@@ -1,0 +1,16 @@
+---
+# Network & VIP Configuration
+network_interface: "{{ lab_network_interface | default('eth0') }}"
+api_vip: "{{ lab_api_vip }}"
+api_port: "{{ lab_api_port | default(6443) }}"
+pod_cidr: "{{ lab_pod_cidr | default('10.244.0.0/16') }}"
+service_cidr: "{{ lab_service_cidr | default('10.96.0.0/12') }}"
+
+# Kubernetes & Runtime Versions
+k8s_version_minor: "{{ kubernetes_version_minor | default('v1.31') }}"
+k8s_package_version: "{{ kubernetes_package_version | default('1.31.2-1.1') }}"
+timezone: "{{ system_timezone | default('UTC') }}"
+
+# Longhorn Worker Storage Disk
+longhorn_disk_device: "{{ storage_data_device | default('/dev/sdb') }}"
+longhorn_mount_path: "{{ storage_mount_path | default('/var/lib/longhorn') }}"
